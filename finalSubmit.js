@@ -38,3 +38,50 @@ function bestTeam(player1, player2) {
 		return player2.name;
 	}
 }
+
+function isSame(arr1, arr2) {
+	if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+		return "Invalid";
+	}
+	if (arr1.length !== arr2.length) {
+		return false;
+	}
+	for (let i = 0; i < arr1.length; i++) {
+		if (arr1[i] !== arr2[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function resultReport(marks) {
+	if (!Array.isArray(marks)) {
+		return "Invalid";
+	}
+
+	let totalMark = 0;
+	const passed = [];
+	const failed = [];
+	for (const mark of marks) {
+		if (mark < 40) {
+			failed.push(mark);
+		} else {
+			passed.push(mark);
+		}
+		totalMark = totalMark + mark;
+	}
+	let averageMark;
+	if (marks.length === 0) {
+		averageMark = 0;
+	} else {
+		averageMark = parseInt(totalMark / marks.length);
+	}
+
+	const feedback = {
+		finalScore: averageMark,
+		pass: passed.length,
+		fail: failed.length,
+	};
+
+	return feedback;
+}
